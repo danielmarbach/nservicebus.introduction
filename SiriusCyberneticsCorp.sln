@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiriusCyberneticsCorp.Contract", "SiriusCyberneticsCorp.Contract\SiriusCyberneticsCorp.Contract.csproj", "{167B9643-45A1-4B58-8BDD-F410A2196A6E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiriusCyberneticsCorp.InternalMessages", "SiriusCyberneticsCorp.InternalMessages\SiriusCyberneticsCorp.InternalMessages.csproj", "{3D9F2F64-985A-40DA-9F3D-860EA9570E41}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{167B9643-45A1-4B58-8BDD-F410A2196A6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{167B9643-45A1-4B58-8BDD-F410A2196A6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{167B9643-45A1-4B58-8BDD-F410A2196A6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D9F2F64-985A-40DA-9F3D-860EA9570E41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D9F2F64-985A-40DA-9F3D-860EA9570E41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D9F2F64-985A-40DA-9F3D-860EA9570E41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D9F2F64-985A-40DA-9F3D-860EA9570E41}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
