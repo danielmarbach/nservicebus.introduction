@@ -15,8 +15,16 @@
             this.bus = bus;
         }
 
+        public bool MeanMode { get; set; }
+
         public void Send(Guid facilityId, string username, string reason)
         {
+            if (MeanMode)
+            {
+                Console.WriteLine("Ooops! Your complaint was accidentally burned by a nearby Infinite Improbability Drive!");
+                return;
+            }
+
             this.bus.Send<ComplainAbout>(
                 c =>
                     {

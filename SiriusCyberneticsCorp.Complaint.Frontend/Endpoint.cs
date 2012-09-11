@@ -11,9 +11,9 @@
     /// not remembering anything before a crash. Also, it processes messages using 
     /// its own permissions, not those of the message sender.
     /// 
-    /// IWantCustomInitialization allows to specialize the configuration of bus
+    /// IWantCustomInitialization allows to specialize the configuration of the bus
     /// </summary>
-    public class Endpoint : IConfigureThisEndpoint, AsA_Client, IWantCustomInitialization 
+    public class Endpoint : IConfigureThisEndpoint, AsA_Client, IWantCustomInitialization, ICanBeMean
     {
         public void Init()
         {
@@ -23,5 +23,15 @@
                 .DefiningEventsAs(t => t.Namespace != null && t.Namespace.StartsWith("SiriusCyberneticsCorp.Contract"))
                 .JsonSerializer();
         }
+
+        public void BeMean()
+        {
+            Configure.Instance.Configurer.ConfigureProperty<ComplainAboutSender>(s => s.MeanMode, true);
+        }
+    }
+
+    public interface ICanBeMean
+    {
+        void BeMean();
     }
 }
