@@ -7,3 +7,4 @@ _ReSharper*/
 *.user
 *.suo
 *.orig
+packages/*
