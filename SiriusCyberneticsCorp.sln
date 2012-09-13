@@ -16,6 +16,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{8CCCA5
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiriusCyberneticsCorp.Complaint.Backend", "SiriusCyberneticsCorp.Complaint.Backend\SiriusCyberneticsCorp.Complaint.Backend.csproj", "{EDB7E2BA-7160-4AC6-B41E-A467FE4108DA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiriusCyberneticsCorp.Facility", "SiriusCyberneticsCorp.Facility\SiriusCyberneticsCorp.Facility.csproj", "{CDB478A0-4894-4CF5-80F9-D83F01995E72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiriusCyberneticsCorp.Sales.Frontend", "SiriusCyberneticsCorp.Sales.Frontend\SiriusCyberneticsCorp.Sales.Frontend.csproj", "{62C337FD-70E9-4F59-B7C7-6A4FD1AA8B14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiriusCyberneticsCorp.Sales.Backend", "SiriusCyberneticsCorp.Sales.Backend\SiriusCyberneticsCorp.Sales.Backend.csproj", "{67760B37-BF8E-4F67-8469-B4B971E56756}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +44,18 @@ Global
 		{EDB7E2BA-7160-4AC6-B41E-A467FE4108DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDB7E2BA-7160-4AC6-B41E-A467FE4108DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDB7E2BA-7160-4AC6-B41E-A467FE4108DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDB478A0-4894-4CF5-80F9-D83F01995E72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDB478A0-4894-4CF5-80F9-D83F01995E72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDB478A0-4894-4CF5-80F9-D83F01995E72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDB478A0-4894-4CF5-80F9-D83F01995E72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62C337FD-70E9-4F59-B7C7-6A4FD1AA8B14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62C337FD-70E9-4F59-B7C7-6A4FD1AA8B14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62C337FD-70E9-4F59-B7C7-6A4FD1AA8B14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62C337FD-70E9-4F59-B7C7-6A4FD1AA8B14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67760B37-BF8E-4F67-8469-B4B971E56756}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67760B37-BF8E-4F67-8469-B4B971E56756}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67760B37-BF8E-4F67-8469-B4B971E56756}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67760B37-BF8E-4F67-8469-B4B971E56756}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
