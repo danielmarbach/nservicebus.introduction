@@ -1,0 +1,38 @@
+﻿@model IEnumerable<SiriusCyberneticsCorp.Sales.Frontend.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            OrderId
+        </th>
+        <th>
+            Status
+        </th>
+        <th>
+            Submitted At
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubmittedAt)
+        </td>
+    </tr>
+}
+
+</table>

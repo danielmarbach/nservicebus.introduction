@@ -8,9 +8,24 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    @RenderBody()
-
-    @Scripts.Render("~/bundles/jquery")
-    @RenderSection("scripts", required: false)
+    <div>
+        <header>
+            <div id="title">
+                <h1>Sirius Cybernetics Corporation Sales Frontend</h1>
+            </div>
+            <nav>
+                <ul id="menu">
+                    <li>@Html.ActionLink("Home", "Index", "Orders")</li>
+                </ul>
+            </nav>
+        </header>
+        <section id="main">
+            @RenderBody()
+        </section>
+        <footer>
+             @Scripts.Render("~/bundles/jquery")
+            @RenderSection("scripts", required: false)
+        </footer>
+    </div>
 </body>
 </html>
