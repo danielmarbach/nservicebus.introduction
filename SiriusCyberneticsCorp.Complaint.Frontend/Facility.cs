@@ -7,6 +7,19 @@ namespace SiriusCyberneticsCorp.Complaint.Frontend
 
     public class Facility
     {
+        public Facility()
+        {
+            this.Motivation = 100;
+        }
+
+        public Guid Id
+        {
+            get
+            {
+                return this.FacilityId;
+            }
+        }
+
         public string Location { get; set; }
 
         public DateTime InstalledAt { get; set; }
@@ -14,6 +27,8 @@ namespace SiriusCyberneticsCorp.Complaint.Frontend
         public string Name { get; set; }
 
         public Guid FacilityId { get; set; }
+
+        public int Motivation { get; set; }
     }
 
     public class Facility_ByLocationAndInstallationDate : AbstractIndexCreationTask<Facility>
@@ -26,7 +41,8 @@ namespace SiriusCyberneticsCorp.Complaint.Frontend
                                facility.Location,
                                facility.InstalledAt,
                                facility.Name,
-                               facility.FacilityId
+                               facility.FacilityId,
+                               facility.Motivation
                            };
 
             Reduce = results => from result in results
@@ -43,6 +59,7 @@ namespace SiriusCyberneticsCorp.Complaint.Frontend
                                         lastFacility.InstalledAt,
                                         lastFacility.Name,
                                         lastFacility.FacilityId,
+                                        lastFacility.Motivation
                                     };
         }
     }

@@ -53,12 +53,12 @@ namespace SiriusCyberneticsCorp.Facility
 
         public void Handle(ComplainedAbout message)
         {
-            Console.WriteLine("Received complaint about facility {0}! Current motivation is at {1}.", this.Data.FacilityId, this.Data.Motivation);
-
             this.Data.Motivation -= 20;
 
             if (this.Data.Motivation > 0)
             {
+                Console.WriteLine("Received complaint about facility {0}! Current motivation is at {1}.", this.Data.FacilityId, this.Data.Motivation);
+
                 this.Bus.Publish<MotivationDecreased>(
                     m =>
                         {
@@ -68,6 +68,8 @@ namespace SiriusCyberneticsCorp.Facility
             }
             else
             {
+                Console.WriteLine("Received complaint about facility {0}! Not motivated to do any further work!", this.Data.FacilityId);
+
                 this.Bus.Publish<BecameDemotivated>(
                     m =>
                         {

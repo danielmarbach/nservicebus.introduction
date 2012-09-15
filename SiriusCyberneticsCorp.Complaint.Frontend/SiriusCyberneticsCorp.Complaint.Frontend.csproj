@@ -108,6 +108,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BecameDemotivatedHandler.cs" />
     <Compile Include="ComplainAboutSender.cs" />
     <Compile Include="Dependency.cs" />
     <Compile Include="Endpoint.cs" />
@@ -115,6 +116,7 @@
     <Compile Include="FacilityInstalledHandler.cs" />
     <Compile Include="Frontend.cs" />
     <Compile Include="Installers.cs" />
+    <Compile Include="MotivationDecreasedHandler.cs" />
     <Compile Include="ProfileHandlers.cs" />
     <Compile Include="Profiles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

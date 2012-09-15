@@ -5,7 +5,6 @@
     using NServiceBus;
 
     using Raven.Client;
-    using Raven.Client.Document;
     using Raven.Client.Embedded;
     using Raven.Client.Indexes;
 
@@ -13,10 +12,12 @@
     {
         public void Init()
         {
-            var documentStore = new EmbeddableDocumentStore { DataDirectory = @".\Data" };
+            var documentStore = new EmbeddableDocumentStore { DataDirectory = @".\Data", EnlistInDistributedTransactions = true };
             documentStore.Initialize();
 
             IndexCreation.CreateIndexes(Assembly.GetExecutingAssembly(), documentStore);
+
+            Configure.Instance.Configurer.ConfigureComponent<IDocumentStore>(() => documentStore, DependencyLifecycle.SingleInstance);
 
             Configure.Instance.Configurer.ConfigureComponent<IDocumentSession>(() => documentStore.OpenSession(), DependencyLifecycle.InstancePerUnitOfWork);
 
