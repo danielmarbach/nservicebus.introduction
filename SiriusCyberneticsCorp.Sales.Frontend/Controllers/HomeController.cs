@@ -13,9 +13,13 @@
 
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+            ViewBag.Message = "Sirius Cybernetics Corporation Sales.";
 
-            this.Bus.Send<OrderFacility>(m => m.OrderId = Guid.NewGuid());
+            this.Bus.Send<OrderFacility>(m =>
+                {
+                    m.OrderId = Guid.NewGuid();
+                    m.CategoryId = new Guid("{400FA2D8-2B33-4C2C-8369-1C75B736DF4A}");
+                });
 
             return View();
         }

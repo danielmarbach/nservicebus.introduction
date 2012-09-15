@@ -1,6 +1,8 @@
 ﻿namespace SiriusCyberneticsCorp.Complaint.Backend
 {
     using System;
+    using System.Collections.Generic;
+    using System.Reflection;
 
     using NServiceBus;
 
@@ -19,7 +21,7 @@
                 .MsmqTransport()
                     .IsTransactional(true)
                     .PurgeOnStartup(false)
-                    .InMemorySubscriptionStorage()
+                .RavenSubscriptionStorage()
                 .UnicastBus()
                     .ImpersonateSender(false)
                     .LoadMessageHandlers()

@@ -17,17 +17,15 @@ namespace SiriusCyberneticsCorp.Sales.Backend
 
         public Guid FacilityId { get; set; }
 
+        public Guid CategoryId { get; set; }
+
         public bool IsDone
         {
             get
             {
-                return this.DeliveredAt.HasValue && this.InstalledAt.HasValue;
+                return this.InstalledAt.HasValue;
             }
         }
-
-        public DateTime? DeliveredAt { get; private set; }
-
-        public string ToLocation { get; set; }
 
         public DateTime? InstalledAt { get; private set; }
 
@@ -37,12 +35,6 @@ namespace SiriusCyberneticsCorp.Sales.Backend
         {
             this.InstalledAt = at;
             this.InstalledIn = installedIn;
-        }
-
-        public void Delivered(DateTime at, string toLocation)
-        {
-            this.DeliveredAt = at;
-            this.ToLocation = toLocation;
         }
     }
 }

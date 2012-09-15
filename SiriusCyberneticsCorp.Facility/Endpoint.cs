@@ -2,6 +2,8 @@
 {
     using NServiceBus;
 
+    using SiriusCyberneticsCorp.Contract.Sales;
+
     /// <summary>
     /// AsA_Publisher extends AsA_Server and also indicates to the infrastructure that a storage for subscription requests is to be set up.
     /// </summary>

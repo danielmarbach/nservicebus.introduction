@@ -40,7 +40,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Complaint\ComplainedAbout.cs" />
-    <Compile Include="Facility\Delivered.cs" />
     <Compile Include="Facility\Installed.cs" />
     <Compile Include="Facility\BecameDemotivated.cs" />
     <Compile Include="Facility\MotivationDecreased.cs" />

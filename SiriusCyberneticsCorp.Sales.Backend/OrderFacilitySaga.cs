@@ -11,13 +11,11 @@
 
     public class OrderFacilitySaga : Saga<OrderFacilitySagaData>,
         IAmStartedByMessages<OrderFacility>,
-        IHandleMessages<Delivered>,
         IHandleMessages<Installed>,
         IHandleTimeouts<OrderFacility>
     {
         public override void ConfigureHowToFindSaga()
         {
-            ConfigureMapping<Delivered>(s => s.FacilityId, m => m.FacilityId);
             ConfigureMapping<Installed>(s => s.FacilityId, m => m.FacilityId);
         }
 
@@ -25,6 +23,9 @@
         {
             this.Data.OrderId = message.OrderId;
             this.Data.FacilityId = Guid.NewGuid();
+            this.Data.CategoryId = message.CategoryId;
+
+            Console.WriteLine("Order {0} received.", this.Data.OrderId);
 
             this.RequestUtcTimeout(TimeSpan.FromSeconds(20), message);
 
@@ -35,13 +36,10 @@
                 });
         }
 
-        public void Handle(Delivered message)
-        {
-            this.Data.Delivered(message.At, message.ToLocation);
-        }
-
         public void Handle(Installed message)
         {
+            Console.WriteLine("Facility {0} installed at {1}.", message.InstalledIn, message.At.ToString());
+
             this.Data.Installed(message.At, message.InstalledIn);
 
             this.Complete();
@@ -56,6 +54,8 @@
         {
             if (this.Data.IsDone)
             {
+                Console.WriteLine("Order {0} fulfilled.", this.Data.OrderId);
+
                 this.ReplyToOriginator<OrderFulfilled>(
                     m =>
                     {
@@ -67,6 +67,8 @@
             }
             else
             {
+                Console.WriteLine("Order {0} failed.", this.Data.OrderId);
+
                 this.ReplyToOriginator<OrderFailed>(
                     m =>
                         {

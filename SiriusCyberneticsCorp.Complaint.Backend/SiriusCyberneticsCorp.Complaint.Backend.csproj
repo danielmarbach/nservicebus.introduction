@@ -63,6 +63,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SiriusCyberneticsCorp.Contract\SiriusCyberneticsCorp.Contract.csproj">
+      <Project>{167B9643-45A1-4B58-8BDD-F410A2196A6E}</Project>
+      <Name>SiriusCyberneticsCorp.Contract</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SiriusCyberneticsCorp.InternalMessages\SiriusCyberneticsCorp.InternalMessages.csproj">
       <Project>{3D9F2F64-985A-40DA-9F3D-860EA9570E41}</Project>
       <Name>SiriusCyberneticsCorp.InternalMessages</Name>

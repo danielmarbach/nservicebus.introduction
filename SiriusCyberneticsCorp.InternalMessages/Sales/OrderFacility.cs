@@ -7,7 +7,5 @@
         Guid OrderId { get; set; }
 
         Guid CategoryId { get; set; }
-
-        int Amount { get; set; }
     }
 }
