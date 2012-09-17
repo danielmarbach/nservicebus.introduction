@@ -36,6 +36,8 @@
     {
         public void Install(WindowsIdentity identity)
         {
+            Console.Title = "Complaint.Frontend";
+
             Console.WriteLine(
                 "Hy there from CustomWindowsEverytimeInstaller! I will run every time!");
         }

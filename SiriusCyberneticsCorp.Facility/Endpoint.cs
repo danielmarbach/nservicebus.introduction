@@ -1,8 +1,8 @@
 ﻿namespace SiriusCyberneticsCorp.Facility
 {
-    using NServiceBus;
+    using System;
 
-    using SiriusCyberneticsCorp.Contract.Sales;
+    using NServiceBus;
 
     /// <summary>
     /// AsA_Publisher extends AsA_Server and also indicates to the infrastructure that a storage for subscription requests is to be set up.
@@ -11,6 +11,8 @@
     {
         public void Init()
         {
+            Console.Title = "Facility";
+
             Configure.With()
                 .DefaultBuilder()
                 .DefiningCommandsAs(t => t.Namespace != null && t.Namespace.StartsWith("SiriusCyberneticsCorp.InternalMessages"))

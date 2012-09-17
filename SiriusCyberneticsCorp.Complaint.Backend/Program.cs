@@ -1,8 +1,6 @@
 ﻿namespace SiriusCyberneticsCorp.Complaint.Backend
 {
     using System;
-    using System.Collections.Generic;
-    using System.Reflection;
 
     using NServiceBus;
 
@@ -10,6 +8,8 @@
     {
         static void Main(string[] args)
         {
+            Console.Title = "Complaint.Backend";
+
             Console.WriteLine("Complaint Backend starting up...");
 
             Configure.With()
