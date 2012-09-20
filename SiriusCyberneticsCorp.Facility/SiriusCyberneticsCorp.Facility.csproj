@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Endpoint.cs" />
+    <Compile Include="FacilityNotAvailable.cs" />
     <Compile Include="FacilitySaga.cs" />
     <Compile Include="FacilitySagaData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
