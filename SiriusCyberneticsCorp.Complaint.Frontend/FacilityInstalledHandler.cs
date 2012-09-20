@@ -1,7 +1,5 @@
 ﻿namespace SiriusCyberneticsCorp.Complaint.Frontend
 {
-    using System;
-
     using NServiceBus;
 
     using Raven.Client;

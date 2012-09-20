@@ -150,7 +150,6 @@
     <Compile Include="Injection\NServiceBusDependencyResolverAdapter.cs" />
     <Compile Include="Models\Database.cs" />
     <Compile Include="Models\Order.cs" />
-    <Compile Include="Models\OrderFailedHandler.cs" />
     <Compile Include="Models\OrderStatus.cs" />
     <Compile Include="Models\OrderSuccessfulHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

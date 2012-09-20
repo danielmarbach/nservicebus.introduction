@@ -41,8 +41,6 @@
   <ItemGroup>
     <Compile Include="Complaint\ComplainedAbout.cs" />
     <Compile Include="Facility\Installed.cs" />
-    <Compile Include="Facility\BecameDemotivated.cs" />
-    <Compile Include="Facility\MotivationDecreased.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sales\Ordered.cs" />
   </ItemGroup>

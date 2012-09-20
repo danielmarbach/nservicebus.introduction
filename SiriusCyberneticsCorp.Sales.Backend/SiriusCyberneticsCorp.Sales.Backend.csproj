@@ -58,8 +58,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Endpoint.cs" />
-    <Compile Include="OrderFacilitySaga.cs" />
-    <Compile Include="OrderFacilitySagaData.cs" />
+    <Compile Include="InstalledHandler.cs" />
+    <Compile Include="OrderFacilityProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
