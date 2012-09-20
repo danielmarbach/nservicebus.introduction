@@ -54,6 +54,11 @@ namespace SiriusCyberneticsCorp.Sales.Frontend.Controllers
             return View(order);
         }
 
+        public ActionResult Clear()
+        {
+            Database.Orders.Clear();
 
+            return RedirectToAction("Index");
+        }
     }
 }
