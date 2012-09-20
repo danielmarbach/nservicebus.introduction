@@ -1,25 +1,17 @@
 ﻿namespace SiriusCyberneticsCorp.Complaint.Frontend
 {
     using System;
-    using System.Collections.Generic;
 
     using NServiceBus;
-
-    using Raven.Client;
-
-    using System.Linq;
 
     public class Frontend : IWantToRunAtStartup
     {
         private const string PressEnterToSendAMessageToExitCtrlC = "Press 'Enter' to send a message.To exit, Ctrl + C";
 
-        private readonly IDocumentStore store;
-
         private readonly ComplainAboutSender sender;
 
-        public Frontend(IDocumentStore store, ComplainAboutSender sender)
+        public Frontend(ComplainAboutSender sender)
         {
-            this.store = store;
             this.sender = sender;
         }
 
@@ -31,31 +23,6 @@
 
             while (Console.ReadLine() != null)
             {
-                List<Facility> facilities;
-                using (var session = this.store.OpenSession())
-                {
-                    facilities = session.Query<Facility, Facility_ByLocationAndInstallationDate>().Take(35).ToList();
-                }
-
-                if (!facilities.Any())
-                {
-                    Console.WriteLine("Nothing to complain about.");
-                    continue;
-                }
-
-                PrintFacilities(facilities);
-
-                Console.WriteLine("# Facility:");
-                int facilityNumber;
-                try
-                {
-                    facilityNumber = Convert.ToInt32(Console.ReadLine());
-                }
-                catch (FormatException)
-                {
-                    continue;
-                }
-
                 Console.WriteLine("Galaxy wide username: ");
 
                 string username = Console.ReadLine();
@@ -64,19 +31,10 @@
 
                 string reason = Console.ReadLine();
 
-                this.sender.Send(facilities.ElementAt(facilityNumber).FacilityId, username, reason);
+                this.sender.Send(Guid.NewGuid(), username, reason);
             }
 
             Console.WriteLine(PressEnterToSendAMessageToExitCtrlC);
-        }
-
-        private static void PrintFacilities(List<Facility> facilities)
-        {
-            for (int i = 0; i < facilities.Count(); i++)
-            {
-                var facility = facilities.ElementAt(i);
-                Console.WriteLine("{0}: {1} (Motivation: {2})", i, facility.Name, facility.Motivation);
-            }
         }
 
         public void Stop()

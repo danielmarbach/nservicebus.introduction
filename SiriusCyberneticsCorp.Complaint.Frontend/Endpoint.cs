@@ -31,7 +31,6 @@
             Configure.With(AllAssemblies.Except("Raven.Backup.exe"))
                 .DefaultBuilder()
                 .DefiningCommandsAs(t => t.Namespace != null && t.Namespace.StartsWith("SiriusCyberneticsCorp.InternalMessages.Complaint"))
-                .DefiningEventsAs(t => t.Namespace != null && t.Namespace.StartsWith("SiriusCyberneticsCorp.Contract.Facility"))
                 .JsonSerializer();
         }
 

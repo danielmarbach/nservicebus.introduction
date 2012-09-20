@@ -27,7 +27,6 @@
 
             Configure.With()
                 .DefiningCommandsAs(t => t.Namespace != null && t.Namespace.StartsWith("SiriusCyberneticsCorp.InternalMessages"))
-                .DefiningEventsAs(t => t.Namespace != null && t.Namespace.StartsWith("SiriusCyberneticsCorp.Contract"))
                 .CustomConfigurationSource(new CustomConfigurationSource())
                 .DefaultBuilder()
                 .JsonSerializer()
