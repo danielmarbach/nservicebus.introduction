@@ -30,14 +30,12 @@
 
             Configure.With(AllAssemblies.Except("Raven.Backup.exe"))
                 .DefaultBuilder()
-                .DefiningCommandsAs(t => t.Namespace != null && t.Namespace.StartsWith("SiriusCyberneticsCorp.InternalMessages.Complaint"))
-                .DefiningEventsAs(t => t.Namespace != null && t.Namespace.StartsWith("SiriusCyberneticsCorp.Contract.Facility"))
                 .JsonSerializer();
         }
 
         public void BeMean()
         {
-            Configure.Instance.Configurer.ConfigureProperty<ComplainAboutSender>(s => s.MeanMode, true);
+            Console.WriteLine("Running in mean mode!");
         }
     }
 
