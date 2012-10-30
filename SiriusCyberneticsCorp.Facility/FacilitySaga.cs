@@ -75,6 +75,7 @@ namespace SiriusCyberneticsCorp.Facility
                         {
                             m.FacilityId = this.Data.FacilityId;
                         });
+                this.MarkAsComplete();
             }
         }
     }
