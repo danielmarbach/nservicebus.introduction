@@ -1,17 +1,14 @@
-﻿namespace SiriusCyberneticsCorp.Facility
+﻿namespace SiriusCyberneticsCorp.Sales.Backend
 {
     using System;
     using System.Runtime.InteropServices;
 
     using NServiceBus;
 
-    /// <summary>
-    /// AsA_Publisher extends AsA_Server and also indicates to the infrastructure that a storage for subscription requests is to be set up.
-    /// </summary>
-    public class Endpoint : IConfigureThisEndpoint, AsA_Publisher, IWantCustomInitialization
+    public class EndpointConfig : IConfigureThisEndpoint, AsA_Publisher, IWantCustomInitialization
     {
         const int SwpNosize = 0x0001;
-
+        
         [DllImport("kernel32.dll", ExactSpelling = true)]
         private static extern IntPtr GetConsoleWindow();
 
@@ -22,13 +19,14 @@
 
         public void Init()
         {
-            Console.Title = "Facility";
+            Console.Title = "Sales.Backend";
 
-            Console.SetWindowSize(80, 30);
-            SetWindowPos(ConsolePtr, 0, 650, 10, 0, 0, SwpNosize);
-
+            Console.SetWindowSize(70, 29);
+            SetWindowPos(ConsolePtr, 0, 10, 10, 0, 0, SwpNosize);
+            
             Configure.With()
                 .DefaultBuilder()
+                .DefiningCommandsAs(t => t.Namespace != null && t.Namespace.StartsWith("SiriusCyberneticsCorp.InternalMessages"))
                 .DefiningEventsAs(t => t.Namespace != null && t.Namespace.StartsWith("SiriusCyberneticsCorp.Contract"))
                 .JsonSerializer();
         }
