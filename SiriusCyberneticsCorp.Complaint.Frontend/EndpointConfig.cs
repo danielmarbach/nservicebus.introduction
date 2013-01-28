@@ -11,7 +11,7 @@
     /// 
     /// IWantCustomInitialization allows to specialize the configuration of the bus
     /// </summary>
-    public class Endpoint : IConfigureThisEndpoint, AsA_Server, IWantCustomInitialization, ICanBeMean
+    public class EndpointConfig : IConfigureThisEndpoint, AsA_Server, IWantCustomInitialization, ICanBeMean
     {
         const int SwpNosize = 0x0001;
 
