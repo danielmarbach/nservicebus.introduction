@@ -31,7 +31,9 @@
             Configure.With(AllAssemblies.Except("Raven.Backup.exe"))
                 .DefaultBuilder()
                 .DefiningCommandsAs(t => t.Namespace != null && t.Namespace.StartsWith("SiriusCyberneticsCorp.InternalMessages.Complaint"))
-                .JsonSerializer();
+                .DefiningEventsAs(t => t.Namespace != null && t.Namespace.StartsWith("SiriusCyberneticsCorp.Contract.Facility"));
+
+            Configure.Serialization.Json();
         }
 
         public void BeMean()

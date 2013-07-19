@@ -28,14 +28,19 @@
             Configure.With()
                 .DefiningCommandsAs(t => t.Namespace != null && t.Namespace.StartsWith("SiriusCyberneticsCorp.InternalMessages"))
                 .CustomConfigurationSource(new CustomConfigurationSource())
-                .DefaultBuilder()
-                .JsonSerializer()
-                .MsmqTransport()
-                    .IsTransactional(true)
-                    .PurgeOnStartup(false)
+                .DefaultBuilder();
+
+            Configure.Serialization.Json();
+
+            Configure.Instance.UseTransport<Msmq>()
+                .PurgeOnStartup(true);
+
+            Configure.Transactions.Enable();
+
+            Configure.Instance
                 .RavenSubscriptionStorage()
                 .UnicastBus()
-                    .ImpersonateSender(false)
+                    .RunHandlersUnderIncomingPrincipal(false)
                     .LoadMessageHandlers()
                 .CreateBus()
                 .Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
