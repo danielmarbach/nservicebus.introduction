@@ -9,7 +9,7 @@
 
     using System.Linq;
 
-    public class Frontend : IWantToRunAtStartup
+    public class Frontend : IWantToRunWhenBusStartsAndStops
     {
         private const string PressEnterToSendAMessageToExitCtrlC = "Press 'Enter' to send a message.To exit, Ctrl + C";
 
@@ -23,7 +23,7 @@
             this.sender = sender;
         }
 
-        public void Run()
+        public void Start()
         {
             Console.WriteLine("Complaint Frontend starting up...");
             Console.WriteLine();

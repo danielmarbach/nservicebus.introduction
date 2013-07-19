@@ -29,8 +29,10 @@
 
             Configure.With()
                 .DefaultBuilder()
-                .DefiningEventsAs(t => t.Namespace != null && t.Namespace.StartsWith("SiriusCyberneticsCorp.Contract"))
-                .JsonSerializer();
+                .DefiningCommandsAs(t => t.Namespace != null && t.Namespace.StartsWith("SiriusCyberneticsCorp.InternalMessages"))
+                .DefiningEventsAs(t => t.Namespace != null && t.Namespace.StartsWith("SiriusCyberneticsCorp.Contract"));
+
+            Configure.Serialization.Json();
         }
     }
 }

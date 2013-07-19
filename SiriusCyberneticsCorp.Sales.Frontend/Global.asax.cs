@@ -23,14 +23,15 @@ namespace SiriusCyberneticsCorp.Sales.Frontend
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+            Configure.Serialization.Json();
+
             Configure.With()
                 .DefiningCommandsAs(t => t.Namespace != null && t.Namespace.StartsWith("SiriusCyberneticsCorp.InternalMessages"))
                 .DefaultBuilder()
                 .ForMvc()
-                .JsonSerializer()
-                .MsmqTransport()
+                .UseTransport<Msmq>()
                 .UnicastBus()
-                    .ImpersonateSender(false)
+                    .RunHandlersUnderIncomingPrincipal(false)
                 .CreateBus()
                 .Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
         }
