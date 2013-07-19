@@ -16,8 +16,8 @@ namespace SiriusCyberneticsCorp.Facility
     {
         public override void ConfigureHowToFindSaga()
         {
-            this.ConfigureMapping<ComplainedAbout>(s => s.FacilityId, m => m.FacilityId);
-            this.ConfigureMapping<Installed>(s => s.FacilityId, m => m.FacilityId);
+            this.ConfigureMapping<ComplainedAbout>(m => m.FacilityId).ToSaga(s => s.FacilityId);
+            this.ConfigureMapping<Installed>(m => m.FacilityId).ToSaga(s => s.FacilityId);
         }
 
         public void Handle(Ordered message)
@@ -30,7 +30,7 @@ namespace SiriusCyberneticsCorp.Facility
             Console.WriteLine("Installing facility {0} with name {1} for order {2}.", this.Data.FacilityId, this.Data.Name, this.Data.OrderId);
 
             // This is only for simulation
-            this.RequestUtcTimeout<ReadyToInstall>(TimeSpan.FromSeconds(5));
+            this.RequestTimeout<ReadyToInstall>(TimeSpan.FromSeconds(5));
         }
 
         public void Timeout(ReadyToInstall state)

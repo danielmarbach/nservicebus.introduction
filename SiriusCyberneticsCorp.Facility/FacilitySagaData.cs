@@ -4,14 +4,8 @@
 
     using NServiceBus.Saga;
 
-    public class FacilitySagaData : ISagaEntity
+    public class FacilitySagaData : IContainSagaData
     {
-        public Guid Id { get; set; }
-
-        public string Originator { get; set; }
-
-        public string OriginalMessageId { get; set; }
-
         [Unique]
         public Guid FacilityId { get; set; }
 
@@ -20,5 +14,8 @@
         public string Name { get; set; }
 
         public int Motivation { get; set; }
+        public Guid Id { get; set; }
+        public string Originator { get; set; }
+        public string OriginalMessageId { get; set; }
     }
 }

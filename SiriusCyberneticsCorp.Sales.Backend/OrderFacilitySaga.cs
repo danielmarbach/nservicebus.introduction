@@ -16,7 +16,7 @@
     {
         public override void ConfigureHowToFindSaga()
         {
-            ConfigureMapping<Installed>(s => s.FacilityId, m => m.FacilityId);
+            ConfigureMapping<Installed>(m => m.FacilityId).ToSaga(s => s.FacilityId);
         }
 
         public void Handle(OrderFacility message)
@@ -27,7 +27,7 @@
 
             Console.WriteLine("Order {0} received.", this.Data.OrderId);
 
-            this.RequestUtcTimeout(TimeSpan.FromSeconds(20), message);
+            this.RequestTimeout(TimeSpan.FromSeconds(20), message);
 
             this.Bus.Publish<Ordered>(m =>
                 {

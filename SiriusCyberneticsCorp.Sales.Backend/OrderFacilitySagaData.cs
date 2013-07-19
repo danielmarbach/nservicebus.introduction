@@ -4,14 +4,8 @@ namespace SiriusCyberneticsCorp.Sales.Backend
 
     using NServiceBus.Saga;
 
-    public class OrderFacilitySagaData : ISagaEntity
+    public class OrderFacilitySagaData : ContainSagaData
     {
-        public Guid Id { get; set; }
-
-        public string Originator { get; set; }
-
-        public string OriginalMessageId { get; set; }
-
         [Unique]
         public Guid OrderId { get; set; }
 
