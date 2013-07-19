@@ -1,7 +1,6 @@
 ﻿namespace SiriusCyberneticsCorp.Complaint.Frontend
 {
     using System;
-    using System.Security.Principal;
 
     using NServiceBus.Installation;
     using NServiceBus.Installation.Environments;
@@ -10,21 +9,21 @@
 
     public class CustomWindowsEverytimeInstaller : INeedToInstallSomething<Windows>
     {
-        public void Install(WindowsIdentity identity)
+        public void Install(string identity)
         {
             Console.Title = "Complaint.Frontend";
 
             Console.WriteLine(
-                "Hy there from CustomWindowsEverytimeInstaller! I will run every time!");
+                "Hy there from CustomWindowsEverytimeInstaller! I will run every time! Identity {0}", identity);
         }
     }
 
     public class CustomWindowsInstaller : INeedToInstallSomething
     {
-        public void Install(WindowsIdentity identity)
+        public void Install(string identity)
         {
             Console.WriteLine(
-                "Hy there from CustomWindowsInstaller! I will run every time!");
+                "Hy there from CustomWindowsInstaller! I will run every time! Identity {0}", identity);
         }
     }
 }
