@@ -1,5 +1,7 @@
 ﻿namespace SiriusCyberneticsCorp.Complaint.Backend
 {
+    using System;
+
     using NServiceBus;
 
     using SiriusCyberneticsCorp.Contract.Complaint;
@@ -16,6 +18,8 @@
 
         public void Handle(ComplainAbout message)
         {
+            Console.WriteLine("Received complain about {0} with reason {1}.", message.FacilityId, message.Reason);
+
             this.bus.Publish<ComplainedAbout>(m =>
                 { 
                     m.FacilityId = message.FacilityId;
