@@ -67,9 +67,9 @@
             }
             else
             {
-                Console.WriteLine("Order {0} failed.", this.Data.OrderId);
+                Console.WriteLine("Order {0} delayed.", this.Data.OrderId);
 
-                this.ReplyToOriginator<OrderFailed>(
+                this.ReplyToOriginator<OrderDelayed>(
                     m =>
                         {
                             m.OrderId = this.Data.OrderId;

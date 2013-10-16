@@ -2,7 +2,7 @@
 {
     using System;
 
-    public interface OrderFailed
+    public interface OrderDelayed
     {
         Guid OrderId { get; set; } 
 
