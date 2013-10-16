@@ -33,7 +33,7 @@
             Configure.Serialization.Json();
 
             Configure.Instance.UseTransport<Msmq>()
-                .PurgeOnStartup(true);
+                .PurgeOnStartup(false);
 
             Configure.Transactions.Enable();
 
