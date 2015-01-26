@@ -8,22 +8,22 @@
     using Raven.Client.Embedded;
     using Raven.Client.Indexes;
 
-    public class Dependency : IWantCustomInitialization
+    public class Dependency : INeedInitialization
     {
-        public void Init()
+        public void Customize(BusConfiguration configuration)
         {
             var documentStore = new EmbeddableDocumentStore { DataDirectory = @".\Data", EnlistInDistributedTransactions = true };
             documentStore.Initialize();
 
             IndexCreation.CreateIndexes(Assembly.GetExecutingAssembly(), documentStore);
 
-            Configure.Instance.Configurer.ConfigureComponent<IDocumentStore>(() => documentStore, DependencyLifecycle.SingleInstance);
+            configuration.RegisterComponents(c => c.ConfigureComponent<IDocumentStore>(() => documentStore, DependencyLifecycle.SingleInstance));
 
-            Configure.Instance.Configurer.ConfigureComponent<IDocumentSession>(() => documentStore.OpenSession(), DependencyLifecycle.InstancePerUnitOfWork);
+            configuration.RegisterComponents(c => c.ConfigureComponent<IDocumentSession>(() => documentStore.OpenSession(), DependencyLifecycle.InstancePerUnitOfWork));
 
-            Configure.Instance.Configurer.ConfigureComponent<RavenUnitOfWork>(DependencyLifecycle.InstancePerCall);
-            
-            Configure.Instance.Configurer.ConfigureComponent<ComplainAboutSender>(DependencyLifecycle.SingleInstance);
+            configuration.RegisterComponents(c => c.ConfigureComponent<RavenUnitOfWork>(DependencyLifecycle.InstancePerCall));
+
+            configuration.RegisterComponents(c => c.ConfigureComponent<ComplainAboutSender>(DependencyLifecycle.SingleInstance));
         }
     }
 }

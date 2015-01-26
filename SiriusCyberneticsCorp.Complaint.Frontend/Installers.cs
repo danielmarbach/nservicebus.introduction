@@ -1,4 +1,6 @@
-﻿namespace SiriusCyberneticsCorp.Complaint.Frontend
+﻿using NServiceBus;
+
+namespace SiriusCyberneticsCorp.Complaint.Frontend
 {
     using System;
 
@@ -7,9 +9,9 @@
 
     // Infrastructure installation now uses powershell. See http://www.nservicebus.com/powershell.aspx
 
-    public class CustomWindowsEverytimeInstaller : INeedToInstallSomething<Windows>
+    public class CustomWindowsEverytimeInstaller : INeedToInstallSomething
     {
-        public void Install(string identity)
+        public void Install(string identity, Configure config)
         {
             Console.Title = "Complaint.Frontend";
 
@@ -20,7 +22,7 @@
 
     public class CustomWindowsInstaller : INeedToInstallSomething
     {
-        public void Install(string identity)
+        public void Install(string identity, Configure config)
         {
             Console.WriteLine(
                 "Hy there from CustomWindowsInstaller! I will run every time! Identity {0}", identity);
