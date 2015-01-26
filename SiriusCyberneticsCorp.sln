@@ -1,18 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiriusCyberneticsCorp.Contract", "SiriusCyberneticsCorp.Contract\SiriusCyberneticsCorp.Contract.csproj", "{167B9643-45A1-4B58-8BDD-F410A2196A6E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiriusCyberneticsCorp.InternalMessages", "SiriusCyberneticsCorp.InternalMessages\SiriusCyberneticsCorp.InternalMessages.csproj", "{3D9F2F64-985A-40DA-9F3D-860EA9570E41}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiriusCyberneticsCorp.Complaint.Frontend", "SiriusCyberneticsCorp.Complaint.Frontend\SiriusCyberneticsCorp.Complaint.Frontend.csproj", "{8D2DA0D7-4C0E-45C9-9F8E-B301832B0263}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{8CCCA579-DED2-4DB3-B37F-ECA756E48004}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiriusCyberneticsCorp.Complaint.Backend", "SiriusCyberneticsCorp.Complaint.Backend\SiriusCyberneticsCorp.Complaint.Backend.csproj", "{EDB7E2BA-7160-4AC6-B41E-A467FE4108DA}"
 EndProject
