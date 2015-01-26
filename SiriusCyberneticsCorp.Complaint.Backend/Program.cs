@@ -4,6 +4,7 @@
     using System.Runtime.InteropServices;
 
     using NServiceBus;
+    using NServiceBus.Persistence;
 
     class Program
     {
@@ -25,29 +26,22 @@
 
             Console.WriteLine("Complaint Backend starting up...");
 
-            Configure.With()
-                .CustomConfigurationSource(new CustomConfigurationSource())
-                .DefaultBuilder();
+            var configuration = new BusConfiguration();
 
-            Configure.Serialization.Json();
+            configuration.CustomConfigurationSource(new CustomConfigurationSource());
 
-            Configure.Instance.UseTransport<Msmq>()
-                .PurgeOnStartup(false);
+            configuration.UseSerialization<JsonSerializer>();
+            configuration.UsePersistence<RavenDBPersistence>();
+            configuration.UseTransport<MsmqTransport>();
 
-            Configure.Transactions.Enable();
-
-            Configure.Instance
-                .RavenSubscriptionStorage()
-                .UnicastBus()
-                    .RunHandlersUnderIncomingPrincipal(false)
-                    .LoadMessageHandlers()
-                .CreateBus()
-                .Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
+            var bus = Bus.Create(configuration).Start();
 
             Console.WriteLine("Press any key to shut down.");
 
             Console.ReadLine();
             Console.WriteLine("Complaint Backend shutting down...");
+
+            bus.Dispose();
         }
     }
 }
