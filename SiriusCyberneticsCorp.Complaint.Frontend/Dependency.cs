@@ -2,11 +2,11 @@
 {
     using NServiceBus;
 
-    public class Dependency : IWantCustomInitialization
+    public class Dependency : INeedInitialization
     {
-        public void Init()
+        public void Customize(BusConfiguration configuration)
         {
-            Configure.Instance.Configurer.ConfigureComponent<ComplainAboutSender>(DependencyLifecycle.SingleInstance);
+            configuration.RegisterComponents(c => c.ConfigureComponent<ComplainAboutSender>(DependencyLifecycle.SingleInstance));
         }
     }
 }

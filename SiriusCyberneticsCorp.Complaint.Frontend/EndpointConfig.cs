@@ -1,4 +1,6 @@
-﻿namespace SiriusCyberneticsCorp.Complaint.Frontend
+﻿using NServiceBus.Persistence;
+
+namespace SiriusCyberneticsCorp.Complaint.Frontend
 {
     using System;
     using System.Runtime.InteropServices;
@@ -11,7 +13,7 @@
     /// 
     /// IWantCustomInitialization allows to specialize the configuration of the bus
     /// </summary>
-    public class EndpointConfig : IConfigureThisEndpoint, AsA_Server, IWantCustomInitialization, ICanBeMean
+    public class EndpointConfig : IConfigureThisEndpoint, AsA_Server
     {
         const int SwpNosize = 0x0001;
 
@@ -23,27 +25,21 @@
         [DllImport("user32.dll", EntryPoint = "SetWindowPos")]
         public static extern IntPtr SetWindowPos(IntPtr hWnd, int hWndInsertAfter, int x, int y, int cx, int cy, int wFlags);
 
-        public void Init()
+        public void Customize(BusConfiguration configuration)
         {
             Console.SetWindowSize(70, 30);
             SetWindowPos(ConsolePtr, 0, 10, 420, 0, 0, SwpNosize);
 
-            Configure.With(AllAssemblies.Except("Raven.Backup.exe"))
-                .DefaultBuilder()
+            configuration.AssembliesToScan(AllAssemblies.Except("Raven.Backup.exe"));
+
+            configuration.Conventions()
                 .DefiningCommandsAs(t => t.Namespace != null && t.Namespace.StartsWith("SiriusCyberneticsCorp.InternalMessages.Complaint"))
                 .DefiningEventsAs(t => t.Namespace != null && t.Namespace.StartsWith("SiriusCyberneticsCorp.Contract.Facility"));
 
-            Configure.Serialization.Json();
-        }
+            configuration.UseSerialization<JsonSerializer>();
+            configuration.UsePersistence<RavenDBPersistence>();
 
-        public void BeMean()
-        {
-            Configure.Instance.Configurer.ConfigureProperty<ComplainAboutSender>(s => s.MeanMode, true);
+            configuration.EnableInstallers();
         }
-    }
-
-    public interface ICanBeMean
-    {
-        void BeMean();
     }
 }
