@@ -14,9 +14,9 @@
         IHandleMessages<Installed>,
         IHandleTimeouts<OrderFacility>
     {
-        public override void ConfigureHowToFindSaga()
+        protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderFacilitySagaData> mapper)
         {
-            ConfigureMapping<Installed>(m => m.FacilityId).ToSaga(s => s.FacilityId);
+            mapper.ConfigureMapping<Installed>(m => m.FacilityId).ToSaga(s => s.FacilityId);
         }
 
         public void Handle(OrderFacility message)
@@ -56,25 +56,25 @@
             {
                 Console.WriteLine("Order {0} fulfilled.", this.Data.OrderId);
 
-                this.ReplyToOriginator<OrderFulfilled>(
-                    m =>
-                    {
-                        m.OrderId = this.Data.OrderId;
-                        m.FacilityId = this.Data.FacilityId;
-                        m.When = this.Data.InstalledAt.Value;
-                        m.Where = this.Data.InstalledIn;
-                    });
+                //this.ReplyToOriginator<OrderFulfilled>(
+                //    m =>
+                //    {
+                //        m.OrderId = this.Data.OrderId;
+                //        m.FacilityId = this.Data.FacilityId;
+                //        m.When = this.Data.InstalledAt.Value;
+                //        m.Where = this.Data.InstalledIn;
+                //    });
             }
             else
             {
                 Console.WriteLine("Order {0} delayed.", this.Data.OrderId);
 
-                this.ReplyToOriginator<OrderDelayed>(
-                    m =>
-                        {
-                            m.OrderId = this.Data.OrderId;
-                            m.FacilityId = this.Data.FacilityId;
-                        });
+                //this.ReplyToOriginator<OrderDelayed>(
+                //    m =>
+                //        {
+                //            m.OrderId = this.Data.OrderId;
+                //            m.FacilityId = this.Data.FacilityId;
+                //        });
             }
 
             this.MarkAsComplete();

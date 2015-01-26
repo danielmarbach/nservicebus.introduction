@@ -9,15 +9,15 @@ namespace SiriusCyberneticsCorp.Facility
     using SiriusCyberneticsCorp.Contract.Facility;
     using SiriusCyberneticsCorp.Contract.Sales;
 
-    public class FacilitySaga : Saga<FacilitySagaData>, 
+    public class FacilitySaga : Saga<FacilitySagaData>,
                                 IAmStartedByMessages<Ordered>,
                                 IHandleMessages<ComplainedAbout>,
                                 IHandleTimeouts<ReadyToInstall>
     {
-        public override void ConfigureHowToFindSaga()
+        protected override void ConfigureHowToFindSaga(SagaPropertyMapper<FacilitySagaData> mapper)
         {
-            this.ConfigureMapping<ComplainedAbout>(m => m.FacilityId).ToSaga(s => s.FacilityId);
-            this.ConfigureMapping<Installed>(m => m.FacilityId).ToSaga(s => s.FacilityId);
+            mapper.ConfigureMapping<ComplainedAbout>(m => m.FacilityId).ToSaga(s => s.FacilityId);
+            mapper.ConfigureMapping<Installed>(m => m.FacilityId).ToSaga(s => s.FacilityId);
         }
 
         public void Handle(Ordered message)
@@ -39,16 +39,14 @@ namespace SiriusCyberneticsCorp.Facility
 
             Console.WriteLine("Facility {0} with name {1} for order {2} installed. Running fully motivated!", this.Data.FacilityId, this.Data.Name, this.Data.OrderId);
 
-            var installed = this.Bus.CreateInstance<Installed>(
+            this.Bus.Publish<Installed>(
                 m =>
-                    {
-                        m.FacilityId = this.Data.FacilityId;
-                        m.At = DateTime.UtcNow;
-                        m.InstalledIn = "Building 42";
-                        m.Name = this.Data.Name;
-                    });
-
-            this.Bus.Publish(installed);
+                {
+                    m.FacilityId = this.Data.FacilityId;
+                    m.At = DateTime.UtcNow;
+                    m.InstalledIn = "Building 42";
+                    m.Name = this.Data.Name;
+                });
         }
 
         public void Handle(ComplainedAbout message)
@@ -61,10 +59,10 @@ namespace SiriusCyberneticsCorp.Facility
 
                 this.Bus.Publish<MotivationDecreased>(
                     m =>
-                        {
-                            m.FacilityId = this.Data.FacilityId;
-                            m.Amount = 20;
-                        });
+                    {
+                        m.FacilityId = this.Data.FacilityId;
+                        m.Amount = 20;
+                    });
             }
             else
             {
@@ -72,9 +70,9 @@ namespace SiriusCyberneticsCorp.Facility
 
                 this.Bus.Publish<BecameDemotivated>(
                     m =>
-                        {
-                            m.FacilityId = this.Data.FacilityId;
-                        });
+                    {
+                        m.FacilityId = this.Data.FacilityId;
+                    });
                 this.MarkAsComplete();
             }
         }

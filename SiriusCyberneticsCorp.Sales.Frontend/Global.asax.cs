@@ -7,11 +7,6 @@ namespace SiriusCyberneticsCorp.Sales.Frontend
 {
     using NServiceBus;
 
-    using SiriusCyberneticsCorp.Sales.Frontend.Injection;
-
-    // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
-    // visit http://go.microsoft.com/?LinkId=9394801
-
     public class MvcApplication : System.Web.HttpApplication
     {
         protected void Application_Start()
@@ -23,17 +18,15 @@ namespace SiriusCyberneticsCorp.Sales.Frontend
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            Configure.Serialization.Json();
+            var configuration = new BusConfiguration();
+            configuration.UseSerialization<JsonSerializer>();
 
-            Configure.With()
-                .DefiningCommandsAs(t => t.Namespace != null && t.Namespace.StartsWith("SiriusCyberneticsCorp.InternalMessages"))
-                .DefaultBuilder()
-                .ForMvc()
-                .UseTransport<Msmq>()
-                .UnicastBus()
-                    .RunHandlersUnderIncomingPrincipal(false)
-                .CreateBus()
-                .Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
+            configuration.Conventions()
+                .DefiningCommandsAs(t => t.Namespace != null && t.Namespace.StartsWith("SiriusCyberneticsCorp.InternalMessages"));
+
+            Bus = NServiceBus.Bus.Create(configuration).Start();
         }
+
+        public static IBus Bus { get; set; }
     }
 }
