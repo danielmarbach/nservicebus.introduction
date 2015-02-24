@@ -1,18 +1,20 @@
-﻿namespace SiriusCyberneticsCorp.Complaint.Frontend
+﻿using System.Reflection;
+using NServiceBus;
+using Raven.Client;
+using Raven.Client.Document;
+using Raven.Client.Indexes;
+
+namespace SiriusCyberneticsCorp.Complaint.Frontend
 {
-    using System.Reflection;
-
-    using NServiceBus;
-
-    using Raven.Client;
-    using Raven.Client.Embedded;
-    using Raven.Client.Indexes;
-
     public class Dependency : INeedInitialization
     {
         public void Customize(BusConfiguration configuration)
         {
-            var documentStore = new EmbeddableDocumentStore { DataDirectory = @".\Data", EnlistInDistributedTransactions = true };
+            var documentStore = new DocumentStore
+            {
+                Url = "http://localhost:8080",
+                DefaultDatabase = "Complaint.Frontend"
+            };
             documentStore.Initialize();
 
             IndexCreation.CreateIndexes(Assembly.GetExecutingAssembly(), documentStore);
