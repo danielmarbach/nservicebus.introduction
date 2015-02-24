@@ -15,11 +15,6 @@ namespace SiriusCyberneticsCorp.Sales.Frontend.Controllers
 
     public class OrdersController : Controller
     {
-        public IBus Bus { get; set; }
-
-        //
-        // GET: /Orders/
-
         public ActionResult Index()
         {
             return View(Database.Orders.Values.OrderByDescending(o => o.SubmittedAt));
@@ -42,7 +37,8 @@ namespace SiriusCyberneticsCorp.Sales.Frontend.Controllers
 
                 Database.Orders.Add(order.OrderId, order);
 
-                this.Bus.Send<OrderFacility>(m =>
+                // we could also leverage DI, but hey it is a demo app...
+                MvcApplication.Bus.Send<OrderFacility>(m =>
                 {
                     m.OrderId = order.OrderId;
                     m.CategoryId = order.CategoryId;
