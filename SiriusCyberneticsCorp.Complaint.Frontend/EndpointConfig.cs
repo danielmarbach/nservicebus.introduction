@@ -30,8 +30,6 @@ namespace SiriusCyberneticsCorp.Complaint.Frontend
             Console.SetWindowSize(70, 30);
             SetWindowPos(ConsolePtr, 0, 10, 420, 0, 0, SwpNosize);
 
-            configuration.AssembliesToScan(AllAssemblies.Except("Raven.Backup.exe"));
-
             configuration.Conventions()
                 .DefiningCommandsAs(t => t.Namespace != null && t.Namespace.StartsWith("SiriusCyberneticsCorp.InternalMessages.Complaint"))
                 .DefiningEventsAs(t => t.Namespace != null && t.Namespace.StartsWith("SiriusCyberneticsCorp.Contract.Facility"));
