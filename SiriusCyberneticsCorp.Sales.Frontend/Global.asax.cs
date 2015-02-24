@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using NServiceBus.Persistence;
 
 namespace SiriusCyberneticsCorp.Sales.Frontend
 {
@@ -20,6 +21,7 @@ namespace SiriusCyberneticsCorp.Sales.Frontend
 
             var configuration = new BusConfiguration();
             configuration.UseSerialization<JsonSerializer>();
+            configuration.UsePersistence<RavenDBPersistence>();
 
             configuration.Conventions()
                 .DefiningCommandsAs(t => t.Namespace != null && t.Namespace.StartsWith("SiriusCyberneticsCorp.InternalMessages"));
