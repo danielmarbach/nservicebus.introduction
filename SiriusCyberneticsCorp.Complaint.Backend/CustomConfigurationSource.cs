@@ -9,7 +9,7 @@ namespace SiriusCyberneticsCorp.Complaint.Backend
         {
             if (typeof(T) == typeof(UnicastBusConfig))
             {
-                return new UnicastBusConfig { ForwardReceivedMessagesTo = "audit" } as T;
+                return new UnicastBusConfig() as T;
             }
 
             if (typeof(T) == typeof(MessageForwardingInCaseOfFaultConfig))
