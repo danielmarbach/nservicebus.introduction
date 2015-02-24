@@ -56,25 +56,26 @@
             {
                 Console.WriteLine("Order {0} fulfilled.", this.Data.OrderId);
 
-                //this.ReplyToOriginator<OrderFulfilled>(
-                //    m =>
-                //    {
-                //        m.OrderId = this.Data.OrderId;
-                //        m.FacilityId = this.Data.FacilityId;
-                //        m.When = this.Data.InstalledAt.Value;
-                //        m.Where = this.Data.InstalledIn;
-                //    });
+                var orderFulfilled = new OrderFulfilled
+                {
+                    OrderId = this.Data.OrderId,
+                    FacilityId = this.Data.FacilityId,
+                    When = this.Data.InstalledAt.Value,
+                    Where = this.Data.InstalledIn,
+                };
+
+                this.ReplyToOriginator(orderFulfilled);
             }
             else
             {
                 Console.WriteLine("Order {0} delayed.", this.Data.OrderId);
 
-                //this.ReplyToOriginator<OrderDelayed>(
-                //    m =>
-                //        {
-                //            m.OrderId = this.Data.OrderId;
-                //            m.FacilityId = this.Data.FacilityId;
-                //        });
+                var orderDelayed = new OrderDelayed
+                {
+                    OrderId = this.Data.OrderId,
+                    FacilityId = this.Data.FacilityId,
+                };
+                this.ReplyToOriginator(orderDelayed);
             }
 
             this.MarkAsComplete();

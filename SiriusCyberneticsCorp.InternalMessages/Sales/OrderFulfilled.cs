@@ -2,14 +2,14 @@
 {
     using System;
 
-    public interface OrderFulfilled
+    public class OrderFulfilled
     {
-        Guid OrderId { get; set; }
+        public Guid OrderId { get; set; }
 
-        Guid FacilityId { get; set; }
+        public Guid FacilityId { get; set; }
 
-        DateTime When { get; set; }
+        public DateTime When { get; set; }
 
-        string Where { get; set; }
+        public string Where { get; set; }
     }
 }
