@@ -76,8 +76,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-      <SubType>Designer</SubType>
-    </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

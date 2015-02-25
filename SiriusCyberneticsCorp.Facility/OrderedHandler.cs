@@ -20,7 +20,7 @@
         {
             Console.WriteLine("Someone ordered a facility with order number {0}", message.OrderId);
 
-            var installed = this.bus.CreateInstance<Installed>(
+            this.bus.Publish<Installed>(
                 m =>
                 {
                     m.FacilityId = message.FacilityId;
@@ -28,8 +28,6 @@
                     m.InstalledIn = "Building 42";
                     m.Name = string.Format("VHPT-{0}", message.FacilityId.ToString().Substring(0, 6)).ToUpper();
                 });
-
-            this.bus.Publish(installed);
         }
     }
 }
