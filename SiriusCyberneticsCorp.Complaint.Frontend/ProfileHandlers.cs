@@ -44,8 +44,6 @@
             Console.WriteLine("DoNotAllowAnyoneInTheUniverseToComplainAboutOurProducts profile activated!");
 
             Console.WriteLine("Muahahahha! Enabling mean mode!");
-
-            config.RegisterComponents(c => c.ConfigureProperty<ComplainAboutSender>(s => s.MeanMode, true));
         }
     }
 
