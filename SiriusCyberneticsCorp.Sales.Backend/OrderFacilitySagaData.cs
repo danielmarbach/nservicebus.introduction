@@ -6,9 +6,9 @@ namespace SiriusCyberneticsCorp.Sales.Backend
 
     public class OrderFacilitySagaData : ContainSagaData
     {
-        [Unique]
         public Guid OrderId { get; set; }
 
+        [Unique]
         public Guid FacilityId { get; set; }
 
         public Guid CategoryId { get; set; }
